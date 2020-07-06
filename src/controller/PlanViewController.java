@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,18 +10,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.Plan;
+import service.face.PlanService;
+import service.impl.PlanServiceImpl;
+
+
 /**
  * Servlet implementation class PlanViewController
  */
 @WebServlet("/plan/view")
 public class PlanViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private PlanService planService = new PlanServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
-	
+		// 디비에서 정보 가져오기
+		List<Plan> allPlan = planService.getPlan(req);
+		
+		System.out.println(allPlan);
+		
+		// 가져온 정보 뷰단으로 보내주기
+		req.setAttribute("allPlan", allPlan);
+		
+		// 포워딩 작업
+		req.getRequestDispatcher("/WEB-INF/views/view.jsp").forward(req, resp);
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// View 지정
+		req.getRequestDispatcher("/WEB-INF/views/view.jsp").forward(req, resp);
+		
 	}
 
 }

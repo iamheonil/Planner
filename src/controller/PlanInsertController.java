@@ -11,26 +11,34 @@ import javax.servlet.http.HttpServletResponse;
 import service.face.PlanService;
 import service.impl.PlanServiceImpl;
 
+
 /**
- * Servlet implementation class CalendarAddController
+ * Servlet implementation class PlanInsertController
  */
-@WebServlet("/calendar/add")
-public class PlanAddController extends HttpServlet {
+@WebServlet("/plan/insert")
+public class PlanInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PlanService calendarService = new PlanServiceImpl();
-	
+	private PlanService planService = new PlanServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.getRequestDispatcher("/WEB-INF/views/calendaradd.jsp").forward(req, resp);
+		System.out.println("insert 확인");
+		
+		
+		
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// System.out.println("보낼게");
+		
+		planService.insertPlan(req);
+		
+		resp.sendRedirect("/plan/view");
 		
 	}
-	
-	@Override
-		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		calendarService.calendarAdd();
-		
-		}
 
 }

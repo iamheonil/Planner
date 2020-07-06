@@ -2,31 +2,41 @@ package dao.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import dto.Plan;
 
+
 public interface PlanDao {
-
+	
 	/**
-	 * 일정을 추가한다.
+	 * DB에 들어가 있는 Plan을 가져옵니다.
 	 * 
-	 * @return ListObj - 일정 추가할 정보
+	 * @return
 	 */
-	public List<Plan> add();
-
+	public List<Plan> dbPlan(HttpServletRequest req);
+	
+	
 	/**
+	 * Service 에서 넘어온 일정 정보 처리
 	 * 
+	 * @param req - 아이디 정보
+	 * @param plan - 삽입될 일정 내용
+	 */
+	public void dbInsert(HttpServletRequest req, Plan plan);
+	
+	// 수정 자리
+	/**
 	 * 일정을 수정한다.
 	 * 
-	 * @param calendar - 수정할 객체의 정보
+	 * @param req - Service에서 넘어온 수정 정보
 	 */
-	public void modify(Plan calendar);
-
+	public void dbModify(HttpServletRequest req, Plan plan);
+	
 	/**
-	 * 
 	 * 일정을 삭제한다.
 	 * 
-	 * @param calendar - 삭제할 객체의 정보
+	 * @param plan - Service에서 넘어온 삭제 정보
 	 */
-	public void delete(Plan calendar);
-
+	public void dbDelete(Plan plan);
 }

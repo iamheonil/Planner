@@ -1,39 +1,66 @@
 package service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import dao.face.PlanDao;
 import dao.impl.PlanDaoImpl;
 import dto.Plan;
 import service.face.PlanService;
 
+
 public class PlanServiceImpl implements PlanService {
 
-	private PlanDao calendarDao = new PlanDaoImpl();
+	private PlanDao planDao = new PlanDaoImpl();
+	
+	
+	/**
+	 * DB에 등록되어 있는 일정을 가져옵니다.
+	 * 
+	 */
+	@Override
+	public List<Plan> getPlan(HttpServletRequest req) {
+		
+		return planDao.dbPlan(req);
+	}
+
 
 	@Override
-	public List<Plan> calendarAdd() {
+	public void insertPlan(HttpServletRequest req) {
 
-		List<Plan> cal = new ArrayList<>();
-
-		calendarDao.add();
-
-		return cal;
+		Plan plan = new Plan();
+		
+		System.out.println(req.getParameter("ptime_start"));
+		
+		plan.setPlan_name(req.getParameter("plan_name"));
+		plan.setPtime_start(req.getParameter("ptime_start"));
+		plan.setPtime_end(req.getParameter("ptime_end"));
+		
+		planDao.dbInsert(req, plan);
 	}
 
 	@Override
-	public void calendarModify(Plan calendar) {
+	public void modifyPlan(HttpServletRequest req, Plan plan) {
 
-		calendarDao.modify(calendar);
-
+//		plan.setPlan_num(Integer.parseInt(req.getParameter("plan_num")));
+//		plan.setPlan_name(req.getParameter("plan_name"));
+//		plan.setPtime_start(req.getParameter("ptime_start"));
+//		plan.setPtime_end(req.getParameter("ptime_end"));
+		
+		planDao.dbModify(req, plan);
+		
 	}
 
+	
 	@Override
-	public void calendarDelete(Plan calendar) {
+	public void deletePlan(Plan plan) {
 
-		calendarDao.delete(calendar);
-
+		planDao.dbDelete(plan);
+		
 	}
+
+
+	
 
 }

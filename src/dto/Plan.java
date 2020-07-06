@@ -1,18 +1,25 @@
 package dto;
 
-import java.util.Date;
-
 public class Plan {
 
+	private int plan_num;
 	private int userid;
-	private String pname;
-	private Date ptime;
-	private int ptime_end;
+	private String plan_name;
+	private String ptime_start;
+	private String ptime_end;
 
 	@Override
 	public String toString() {
-		return "Calendar [userid=" + userid + ", pname=" + pname + ", ptime=" + ptime + ", ptime_end=" + ptime_end
-				+ "]";
+		return "Plan [plan_num=" + plan_num + ", userid=" + userid + ", plan_name=" + plan_name + ", ptime_start="
+				+ ptime_start + ", ptime_end=" + ptime_end + "]";
+	}
+
+	public int getPlan_num() {
+		return plan_num;
+	}
+
+	public void setPlan_num(int plan_num) {
+		this.plan_num = plan_num;
 	}
 
 	public int getUserid() {
@@ -23,28 +30,28 @@ public class Plan {
 		this.userid = userid;
 	}
 
-	public String getPname() {
-		return pname;
+	public String getPlan_name() {
+		return plan_name;
 	}
 
-	public void setPname(String pname) {
-		this.pname = pname;
+	public void setPlan_name(String plan_name) {
+		this.plan_name = plan_name;
 	}
 
-	public Date getPtime() {
-		return ptime;
+	public String getPtime_start() {
+		return ptime_start;
 	}
 
-	public void setPtime(Date ptime) {
-		this.ptime = ptime;
+	public void setPtime_start(String string) {
+		this.ptime_start = string;
 	}
 
-	public int getPtime_end() {
+	public String getPtime_end() {
 		return ptime_end;
 	}
 
-	public void setPtime_end(int ptime_end) {
-		this.ptime_end = ptime_end;
+	public void setPtime_end(String string) {
+		this.ptime_end = string;
 	}
 
 }
