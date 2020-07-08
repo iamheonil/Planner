@@ -13,12 +13,10 @@
     <!-- CDN -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-<!-- 부트스트랩 3.3.2 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
+	<!-- 부트스트랩 3.3.2 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <style type="text/css">
 		@import url(//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css);
@@ -102,6 +100,7 @@
 			eventLimit : true, // allow "more" link when too many events
 			locale : 'ko',
 			displayEventTime: false,
+			disableDragging: true,
 			events : [ 
 				<c:forEach items="${allPlan }" var="plan">
 				{
@@ -122,11 +121,11 @@
 
 	});
 	
-	$(document).ready(function() {
-		$('#calendar').FullCalendar.Calendar({
+/* 	$(document).ready(function() {
+		$('#calendar') ({
 	    	disableDragging: true
 		});		
-	});
+	}); */
 </script>
 
 </head>
@@ -257,17 +256,20 @@
 					<br>
 					<c:out value="${ptime_start }"></c:out>
 					<c:forEach items="${allPlan }" var="plan">
-<script type="text/javascript">
-		$(document).ready(function() {
-			// 삭제버튼 동작
-			$("#btnDelete").click(function() {
-				location.href = "/plan/delete?plan_num=${plan.plan_num }";
-			});
-		});
-</script>
+					
+			<script type="text/javascript">
+					$(document).ready(function() {
+						// 삭제버튼 동작
+						$("#btnDelete").click(function() {
+							location.href = "/plan/delete?plan_num=${plan.plan_num }";
+						});
+					});
+			</script>
+			
 							일정명 : ${plan.plan_name } <br>
 							일정시작시간 : ${plan.ptime_start } <br>
 							일정종료시간 : ${plan.ptime_end } <br>
+							일정번호테스트 : ${plan.plan_num } <br>
 						<button class="btn btn-danger" id="btnDelete">해당 일정 삭제</button>
 						<hr>
 					</c:forEach>

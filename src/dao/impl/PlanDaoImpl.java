@@ -74,7 +74,8 @@ public class PlanDaoImpl implements PlanDao {
 		try {
 			// DB작업
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, (int) req.getSession().getAttribute("userid"));
+			// ps.setInt(1, (int) req.getSession().getAttribute("userid"));
+			ps.setInt(1, 297);
 			ps.setString(2, plan.getPlan_name());
 			ps.setString(3, plan.getPtime_start());
 			ps.setString(4, plan.getPtime_end());
